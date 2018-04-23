@@ -29,16 +29,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout().permitAll();
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        List<UserDetails> users = Collections.singletonList(
-                User.withUsername("alibaba").password(encoder.encode("open sesame")).roles("USER").build());
-        return new InMemoryUserDetailsManager(users);
-    }
-
 }
